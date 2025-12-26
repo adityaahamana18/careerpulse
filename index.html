@@ -4,1112 +4,336 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CareerPulse - Discover Your Path</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        dark: {
-                            50: '#f9fafb',
-                            100: '#f3f4f6',
-                            200: '#e5e7eb',
-                            300: '#d1d5db',
-                            400: '#9ca3af',
-                            500: '#6b7280',
-                            600: '#4b5563',
-                            700: '#374151',
-                            800: '#1f2937',
-                            900: '#111827',
-                            950: '#030712'
-                        },
-                        primary: {
-                            DEFAULT: '#8b5cf6',
-                            light: '#a78bfa',
-                            dark: '#7c3aed'
-                        },
-                        secondary: {
-                            DEFAULT: '#10b981',
-                            light: '#34d399',
-                            dark: '#059669'
-                        },
-                        accent: {
-                            DEFAULT: '#f59e0b',
-                            light: '#fbbf24',
-                            dark: '#d97706'
-                        }
-                    },
-                    fontFamily: {
-                        'poppins': ['Poppins', 'sans-serif'],
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
-                        'slide-up': 'slide-up 0.5s ease-out',
-                        'slide-down': 'slide-down 0.5s ease-out',
-                        'fade-in': 'fade-in 0.8s ease-out',
-                        'bounce-slow': 'bounce-slow 2s infinite',
-                        'gradient-shift': 'gradient-shift 8s ease infinite',
-                        'blob': 'blob 10s infinite',
-                        'shimmer': 'shimmer 2.5s infinite',
-                        'rotate-slow': 'rotate-slow 20s linear infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        'pulse-glow': {
-                            '0%, 100%': { opacity: 1 },
-                            '50%': { opacity: 0.7, transform: 'scale(1.05)' },
-                        },
-                        'slide-up': {
-                            '0%': { transform: 'translateY(20px)', opacity: 0 },
-                            '100%': { transform: 'translateY(0)', opacity: 1 },
-                        },
-                        'slide-down': {
-                            '0%': { transform: 'translateY(-20px)', opacity: 0 },
-                            '100%': { transform: 'translateY(0)', opacity: 1 },
-                        },
-                        'fade-in': {
-                            '0%': { opacity: 0 },
-                            '100%': { opacity: 1 },
-                        },
-                        'bounce-slow': {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        'gradient-shift': {
-                            '0%, 100%': { backgroundPosition: '0% 50%' },
-                            '50%': { backgroundPosition: '100% 50%' },
-                        },
-                        'blob': {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        },
-                        'shimmer': {
-                            '0%': { backgroundPosition: '-500px 0' },
-                            '100%': { backgroundPosition: '500px 0' },
-                        },
-                        'rotate-slow': {
-                            '0%': { transform: 'rotate(0deg)' },
-                            '100%': { transform: 'rotate(360deg)' },
-                        },
-                    },
-                    backgroundImage: {
-                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-                        'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #111827 0%, #1f2937 50%, #030712 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(90deg, #8b5cf6, #3b82f6, #10b981);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            background-size: 200% auto;
-            animation: gradient-shift 8s ease infinite;
-        }
-        
-        .card-glow {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-        
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
-            z-index: -1;
-        }
-        
-        .skill-option:hover .skill-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-        
-        .progress-ring {
-            transform: rotate(-90deg);
-        }
-        
-        .progress-ring-circle {
-            transition: stroke-dashoffset 0.5s;
-            transform-origin: 50% 50%;
-        }
-        
-        .floating-element {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .glow-effect {
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
-        }
-        
-        .result-card {
-            background: linear-gradient(145deg, rgba(31, 41, 55, 0.8), rgba(17, 24, 39, 0.9));
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .result-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(139, 92, 246, 0.6);
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
-        }
-        
-        .shimmer-button {
-            background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
-            background-size: 200% 100%;
-            animation: shimmer 2.5s infinite;
-        }
-        
-        .typewriter {
-            overflow: hidden;
-            border-right: .15em solid #8b5cf6;
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-        }
-        
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #8b5cf6 }
-        }
-        
-        .bg-grid {
-            background-image: 
-                linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-    </style>
 </head>
-<body class="text-white font-poppins">
+<body class="dark-theme">
     <!-- Animated Background Elements -->
-    <div class="fixed inset-0 overflow-hidden z-0">
-        <div class="particle w-64 h-64 top-1/4 left-10 animate-blob" style="animation-delay: 0s;"></div>
-        <div class="particle w-96 h-96 bottom-1/4 right-10 animate-blob" style="animation-delay: 3s;"></div>
-        <div class="particle w-48 h-48 top-10 right-1/4 animate-blob" style="animation-delay: 6s;"></div>
-        <div class="absolute inset-0 bg-grid opacity-20"></div>
-        <div class="absolute inset-0 bg-gradient-radial from-primary/10 via-transparent to-transparent"></div>
+    <div class="animated-bg">
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="grid-overlay"></div>
+        <div class="gradient-overlay"></div>
     </div>
 
     <!-- Navigation -->
-    <nav class="relative z-50 bg-dark-900/80 backdrop-blur-md border-b border-dark-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center space-x-2 animate-slide-down">
-                    <div class="relative">
-                        <div class="absolute inset-0 bg-primary rounded-full blur-lg opacity-70 animate-pulse-glow"></div>
-                        <div class="relative w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
-                            <i class="fas fa-rocket text-white"></i>
-                        </div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon-container">
+                    <div class="logo-glow"></div>
+                    <div class="logo-icon">
+                        <i class="fas fa-rocket"></i>
                     </div>
-                    <span class="text-2xl font-bold gradient-text">CareerPulse</span>
                 </div>
-                <button onclick="resetAssessment()" class="group relative px-6 py-2.5 bg-dark-800 hover:bg-dark-700 border border-dark-600 rounded-xl transition-all duration-300 hover:scale-105 hover:border-primary/50">
-                    <i class="fas fa-sync-alt mr-2 group-hover:rotate-180 transition-transform duration-500"></i>
-                    <span>Start Over</span>
-                    <div class="absolute -inset-0.5 bg-gradient-to-r from-primary to-secondary rounded-xl blur opacity-0 group-hover:opacity-30 transition duration-300"></div>
-                </button>
+                <span class="logo-text gradient-text">CareerPulse</span>
             </div>
+            <button id="resetBtn" class="nav-button">
+                <i class="fas fa-sync-alt"></i>
+                <span>Start Over</span>
+                <div class="button-glow"></div>
+            </button>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="relative z-10 max-w-5xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <main class="main-container">
         <!-- Header -->
-        <div class="text-center mb-12 animate-slide-up">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4">
+        <div class="hero-section">
+            <h1 class="hero-title">
                 <span class="gradient-text">Discover Your Perfect</span>
                 <br>
                 <span class="typewriter">Career Path</span>
             </h1>
-            <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+            <p class="hero-subtitle">
                 Answer a few questions and let our AI-powered system reveal careers that match your unique personality and skills
             </p>
             
             <!-- Animated Progress -->
-            <div class="max-w-md mx-auto mb-8">
-                <div class="relative w-32 h-32 mx-auto">
-                    <svg class="w-full h-full" viewBox="0 0 100 100">
-                        <circle cx="50" cy="50" r="45" fill="none" stroke="#374151" stroke-width="8"/>
-                        <circle id="progressRing" cx="50" cy="50" r="45" fill="none" stroke="url(#gradient)" stroke-width="8" stroke-dasharray="283" stroke-dashoffset="283" stroke-linecap="round" class="progress-ring-circle"/>
+            <div class="progress-container">
+                <div class="progress-ring-wrapper">
+                    <svg class="progress-ring" viewBox="0 0 100 100">
+                        <circle class="progress-ring-bg"></circle>
+                        <circle id="progressRing" class="progress-ring-fill"></circle>
                         <defs>
-                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                                 <stop offset="0%" stop-color="#8b5cf6"/>
                                 <stop offset="100%" stop-color="#10b981"/>
                             </linearGradient>
                         </defs>
                     </svg>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <span id="progressText" class="text-2xl font-bold">0%</span>
+                    <div class="progress-text">
+                        <span id="progressText">0%</span>
                     </div>
                 </div>
-                <div class="mt-4 text-lg font-medium">
-                    <span id="stepTitle" class="text-primary-light">Tell us about yourself</span>
+                <div class="step-title">
+                    <span id="stepTitle">Tell us about yourself</span>
                 </div>
             </div>
         </div>
 
         <!-- Step 1: Personal Info -->
-        <div id="step1" class="step card-glow rounded-2xl p-6 md:p-8 mb-8 transform transition-all duration-500 animate-fade-in">
-            <div class="flex items-center mb-6">
-                <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center mr-4 animate-bounce-slow">
-                    <i class="fas fa-user text-white"></i>
+        <div id="step1" class="step-card active">
+            <div class="step-header">
+                <div class="step-icon">
+                    <i class="fas fa-user"></i>
                 </div>
-                <h2 class="text-2xl md:text-3xl font-bold">About You</h2>
+                <h2 class="step-title">About You</h2>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="space-y-2">
-                    <label class="block text-sm font-medium text-gray-300">
-                        <i class="fas fa-graduation-cap mr-2 text-primary"></i>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-graduation-cap"></i>
                         Education Level
                     </label>
-                    <select id="education" class="w-full p-4 bg-dark-800 border border-dark-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 hover:border-primary/50">
-                        <option value="" class="bg-dark-800">Select your education</option>
-                        <option value="highschool" class="bg-dark-800">High School / Equivalent</option>
-                        <option value="undergrad" class="bg-dark-800">Undergraduate Degree</option>
-                        <option value="postgrad" class="bg-dark-800">Postgraduate Degree</option>
-                        <option value="vocational" class="bg-dark-800">Vocational Training</option>
+                    <select id="education" class="form-select">
+                        <option value="">Select your education</option>
+                        <option value="highschool">High School / Equivalent</option>
+                        <option value="undergrad">Undergraduate Degree</option>
+                        <option value="postgrad">Postgraduate Degree</option>
+                        <option value="vocational">Vocational Training</option>
                     </select>
                 </div>
                 
-                <div class="space-y-2">
-                    <label class="block text-sm font-medium text-gray-300">
-                        <i class="fas fa-briefcase mr-2 text-accent"></i>
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-briefcase"></i>
                         Years of Experience
                     </label>
-                    <select id="experience" class="w-full p-4 bg-dark-800 border border-dark-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 hover:border-primary/50">
-                        <option value="" class="bg-dark-800">Select experience</option>
-                        <option value="0" class="bg-dark-800">No experience (Student)</option>
-                        <option value="1-3" class="bg-dark-800">1-3 years</option>
-                        <option value="4-7" class="bg-dark-800">4-7 years</option>
-                        <option value="8+" class="bg-dark-800">8+ years</option>
+                    <select id="experience" class="form-select">
+                        <option value="">Select experience</option>
+                        <option value="0">No experience (Student)</option>
+                        <option value="1-3">1-3 years</option>
+                        <option value="4-7">4-7 years</option>
+                        <option value="8+">8+ years</option>
                     </select>
                 </div>
             </div>
             
-            <div class="mt-8 text-center">
-                <button onclick="nextStep()" class="group relative px-8 py-4 bg-gradient-to-r from-primary to-secondary rounded-xl text-white font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                    <span class="relative z-10">Continue to Skills</span>
-                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
-                    <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-xl blur-lg opacity-0 group-hover:opacity-70 transition duration-500"></div>
+            <div class="button-container">
+                <button id="nextBtn1" class="primary-button">
+                    <span>Continue to Skills</span>
+                    <i class="fas fa-arrow-right"></i>
+                    <div class="button-glow"></div>
                 </button>
             </div>
         </div>
 
         <!-- Step 2: Skills & Interests -->
-        <div id="step2" class="step hidden card-glow rounded-2xl p-6 md:p-8 mb-8">
-            <div class="flex items-center mb-6">
-                <div class="w-10 h-10 bg-gradient-to-br from-secondary to-accent rounded-xl flex items-center justify-center mr-4 animate-bounce-slow">
-                    <i class="fas fa-brain text-white"></i>
+        <div id="step2" class="step-card">
+            <div class="step-header">
+                <div class="step-icon">
+                    <i class="fas fa-brain"></i>
                 </div>
-                <h2 class="text-2xl md:text-3xl font-bold">Your Superpowers</h2>
+                <h2 class="step-title">Your Superpowers</h2>
             </div>
             
-            <div class="mb-8">
-                <p class="text-gray-300 mb-6">Select all that resonate with you:</p>
+            <div class="skills-section">
+                <p class="section-subtitle">Select all that resonate with you:</p>
                 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <!-- Skill options with enhanced animations -->
-                    <template id="skillTemplate">
-                        <label class="skill-option relative group cursor-pointer">
-                            <input type="checkbox" class="absolute opacity-0">
-                            <div class="p-5 bg-dark-800/50 border-2 border-dark-700 rounded-xl group-hover:border-primary/50 transition-all duration-300 group-hover:scale-105 group-active:scale-95">
-                                <div class="skill-icon transition-transform duration-300 mb-3">
-                                    <!-- Icon added via JS -->
-                                </div>
-                                <p class="font-medium text-center group-hover:text-primary transition-colors duration-300">
-                                    <!-- Text added via JS -->
-                                </p>
-                                <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            </div>
-                        </label>
-                    </template>
+                <div class="skills-grid" id="skillsContainer">
+                    <!-- Skills will be generated by JavaScript -->
                 </div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <button onclick="prevStep()" class="group px-8 py-4 bg-dark-800 border border-dark-600 rounded-xl text-gray-300 font-semibold text-lg transition-all duration-300 hover:scale-105 hover:bg-dark-700">
-                    <i class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform duration-300"></i>
+            <div class="button-grid">
+                <button id="prevBtn2" class="secondary-button">
+                    <i class="fas fa-arrow-left"></i>
                     Go Back
                 </button>
-                <button onclick="nextStep()" class="group relative px-8 py-4 bg-gradient-to-r from-primary to-accent rounded-xl text-white font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                    <span class="relative z-10">Continue to Preferences</span>
-                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
-                    <div class="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-xl blur-lg opacity-0 group-hover:opacity-70 transition duration-500"></div>
+                <button id="nextBtn2" class="primary-button">
+                    <span>Continue to Preferences</span>
+                    <i class="fas fa-arrow-right"></i>
+                    <div class="button-glow"></div>
                 </button>
             </div>
         </div>
 
         <!-- Step 3: Career Preferences -->
-        <div id="step3" class="step hidden card-glow rounded-2xl p-6 md:p-8 mb-8">
-            <div class="flex items-center mb-6">
-                <div class="w-10 h-10 bg-gradient-to-br from-accent to-primary rounded-xl flex items-center justify-center mr-4 animate-bounce-slow">
-                    <i class="fas fa-heart text-white"></i>
+        <div id="step3" class="step-card">
+            <div class="step-header">
+                <div class="step-icon">
+                    <i class="fas fa-heart"></i>
                 </div>
-                <h2 class="text-2xl md:text-3xl font-bold">Your Preferences</h2>
+                <h2 class="step-title">Your Preferences</h2>
             </div>
             
-            <div class="space-y-8">
-                <div class="space-y-4">
-                    <h3 class="text-xl font-semibold text-gray-300">
-                        <i class="fas fa-building mr-2 text-primary"></i>
+            <div class="preferences-section">
+                <div class="preference-group">
+                    <h3 class="preference-title">
+                        <i class="fas fa-building"></i>
                         Preferred Work Environment
                     </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <label class="pref-option relative group cursor-pointer">
-                            <input type="radio" name="environment" value="office" class="absolute opacity-0">
-                            <div class="p-5 bg-dark-800/50 border-2 border-dark-700 rounded-xl group-hover:border-primary/50 transition-all duration-300 group-hover:scale-105 group-active:scale-95">
-                                <div class="text-3xl mb-3 text-center text-primary">
+                    <div class="environment-grid">
+                        <label class="environment-option">
+                            <input type="radio" name="environment" value="office">
+                            <div class="environment-card">
+                                <div class="environment-icon">
                                     <i class="fas fa-building"></i>
                                 </div>
-                                <p class="font-medium text-center">Office/Corporate</p>
-                                <p class="text-sm text-gray-400 text-center mt-2">Traditional workspace with team collaboration</p>
-                                <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <p class="environment-name">Office/Corporate</p>
+                                <p class="environment-desc">Traditional workspace with team collaboration</p>
+                                <div class="card-overlay"></div>
                             </div>
                         </label>
                         
-                        <label class="pref-option relative group cursor-pointer">
-                            <input type="radio" name="environment" value="remote" class="absolute opacity-0">
-                            <div class="p-5 bg-dark-800/50 border-2 border-dark-700 rounded-xl group-hover:border-primary/50 transition-all duration-300 group-hover:scale-105 group-active:scale-95">
-                                <div class="text-3xl mb-3 text-center text-secondary">
+                        <label class="environment-option">
+                            <input type="radio" name="environment" value="remote">
+                            <div class="environment-card">
+                                <div class="environment-icon">
                                     <i class="fas fa-home"></i>
                                 </div>
-                                <p class="font-medium text-center">Remote/Flexible</p>
-                                <p class="text-sm text-gray-400 text-center mt-2">Work from anywhere with flexible hours</p>
-                                <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-secondary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <p class="environment-name">Remote/Flexible</p>
+                                <p class="environment-desc">Work from anywhere with flexible hours</p>
+                                <div class="card-overlay"></div>
                             </div>
                         </label>
                         
-                        <label class="pref-option relative group cursor-pointer">
-                            <input type="radio" name="environment" value="field" class="absolute opacity-0">
-                            <div class="p-5 bg-dark-800/50 border-2 border-dark-700 rounded-xl group-hover:border-primary/50 transition-all duration-300 group-hover:scale-105 group-active:scale-95">
-                                <div class="text-3xl mb-3 text-center text-accent">
+                        <label class="environment-option">
+                            <input type="radio" name="environment" value="field">
+                            <div class="environment-card">
+                                <div class="environment-icon">
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
-                                <p class="font-medium text-center">Field/On-site</p>
-                                <p class="text-sm text-gray-400 text-center mt-2">Active work in different locations</p>
-                                <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <p class="environment-name">Field/On-site</p>
+                                <p class="environment-desc">Active work in different locations</p>
+                                <div class="card-overlay"></div>
                             </div>
                         </label>
                     </div>
                 </div>
                 
-                <div class="space-y-4">
-                    <h3 class="text-xl font-semibold text-gray-300">
-                        <i class="fas fa-bolt mr-2 text-accent"></i>
+                <div class="preference-group">
+                    <h3 class="preference-title">
+                        <i class="fas fa-bolt"></i>
                         Work Style Preference
                     </h3>
-                    <select id="workStyle" class="w-full p-4 bg-dark-800 border border-dark-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 hover:border-primary/50">
-                        <option value="" class="bg-dark-800">Select your preferred work style</option>
-                        <option value="structured" class="bg-dark-800">Structured & Predictable</option>
-                        <option value="dynamic" class="bg-dark-800">Dynamic & Fast-paced</option>
-                        <option value="creative" class="bg-dark-800">Creative & Flexible</option>
-                        <option value="autonomous" class="bg-dark-800">Independent & Autonomous</option>
+                    <select id="workStyle" class="form-select">
+                        <option value="">Select your preferred work style</option>
+                        <option value="structured">Structured & Predictable</option>
+                        <option value="dynamic">Dynamic & Fast-paced</option>
+                        <option value="creative">Creative & Flexible</option>
+                        <option value="autonomous">Independent & Autonomous</option>
                     </select>
                 </div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                <button onclick="prevStep()" class="group px-8 py-4 bg-dark-800 border border-dark-600 rounded-xl text-gray-300 font-semibold text-lg transition-all duration-300 hover:scale-105 hover:bg-dark-700">
-                    <i class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform duration-300"></i>
+            <div class="button-grid">
+                <button id="prevBtn3" class="secondary-button">
+                    <i class="fas fa-arrow-left"></i>
                     Go Back
                 </button>
-                <button onclick="showResults()" class="group relative px-8 py-4 bg-gradient-to-r from-secondary to-primary rounded-xl text-white font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl animate-pulse-glow">
-                    <span class="relative z-10">Reveal Your Career Matches</span>
-                    <i class="fas fa-sparkles ml-2 group-hover:rotate-180 transition-transform duration-500"></i>
-                    <div class="absolute -inset-1 bg-gradient-to-r from-secondary to-primary rounded-xl blur-lg opacity-0 group-hover:opacity-70 transition duration-500"></div>
+                <button id="showResultsBtn" class="primary-button glow">
+                    <span>Reveal Your Career Matches</span>
+                    <i class="fas fa-sparkles"></i>
+                    <div class="button-glow"></div>
                 </button>
             </div>
         </div>
 
         <!-- Results Section -->
-        <div id="results" class="hidden">
+        <div id="results" class="results-section">
             <!-- Hero Result -->
-            <div class="text-center mb-12 animate-slide-up">
-                <div class="relative inline-block mb-6">
-                    <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-xl opacity-50 animate-pulse"></div>
-                    <div class="relative w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto animate-float">
-                        <i class="fas fa-trophy text-3xl text-white"></i>
+            <div class="results-hero">
+                <div class="trophy-container">
+                    <div class="trophy-glow"></div>
+                    <div class="trophy-icon">
+                        <i class="fas fa-trophy"></i>
                     </div>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Your Career Matches!</h2>
-                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                <h2 class="results-title gradient-text">Your Career Matches!</h2>
+                <p class="results-subtitle">
                     Based on your unique profile, here are careers that align with your skills and preferences
                 </p>
                 
                 <!-- Match Score -->
-                <div class="inline-block p-1 bg-gradient-to-r from-primary via-accent to-secondary rounded-full mb-8">
-                    <div class="px-6 py-3 bg-dark-900/90 rounded-full">
-                        <span class="text-lg font-semibold">Overall Match Score: </span>
-                        <span id="overallScore" class="text-2xl font-bold gradient-text">92%</span>
+                <div class="match-score">
+                    <div class="score-gradient">
+                        <div class="score-container">
+                            <span class="score-label">Overall Match Score: </span>
+                            <span id="overallScore" class="score-value">92%</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Career Cards -->
-            <div id="careerResults" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <div class="careers-grid" id="careerResults">
                 <!-- Career cards will be inserted here -->
             </div>
 
             <!-- Next Steps -->
-            <div class="card-glow rounded-2xl p-8 mb-8">
-                <h3 class="text-2xl font-bold mb-6 gradient-text">Your Action Plan</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="group p-6 bg-dark-800/50 rounded-xl border border-dark-700 hover:border-primary transition-all duration-300 hover:scale-105 cursor-pointer">
-                        <div class="w-12 h-12 bg-gradient-to-br from-primary to-purple-500 rounded-lg flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform duration-300">
-                            <i class="fas fa-graduation-cap text-xl"></i>
+            <div class="action-plan">
+                <h3 class="action-plan-title gradient-text">Your Action Plan</h3>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-graduation-cap"></i>
                         </div>
-                        <h4 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Skill Development</h4>
-                        <p class="text-gray-400">Recommended courses and certifications to enhance your profile</p>
+                        <h4 class="action-title">Skill Development</h4>
+                        <p class="action-desc">Recommended courses and certifications to enhance your profile</p>
                     </div>
                     
-                    <div class="group p-6 bg-dark-800/50 rounded-xl border border-dark-700 hover:border-secondary transition-all duration-300 hover:scale-105 cursor-pointer">
-                        <div class="w-12 h-12 bg-gradient-to-br from-secondary to-green-500 rounded-lg flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform duration-300">
-                            <i class="fas fa-network-wired text-xl"></i>
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-network-wired"></i>
                         </div>
-                        <h4 class="text-xl font-bold mb-2 group-hover:text-secondary transition-colors">Networking</h4>
-                        <p class="text-gray-400">Connect with professionals and join relevant communities</p>
+                        <h4 class="action-title">Networking</h4>
+                        <p class="action-desc">Connect with professionals and join relevant communities</p>
                     </div>
                     
-                    <div class="group p-6 bg-dark-800/50 rounded-xl border border-dark-700 hover:border-accent transition-all duration-300 hover:scale-105 cursor-pointer">
-                        <div class="w-12 h-12 bg-gradient-to-br from-accent to-yellow-500 rounded-lg flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform duration-300">
-                            <i class="fas fa-rocket text-xl"></i>
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-rocket"></i>
                         </div>
-                        <h4 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">Career Launch</h4>
-                        <p class="text-gray-400">Portfolio building and job search strategies</p>
+                        <h4 class="action-title">Career Launch</h4>
+                        <p class="action-desc">Portfolio building and job search strategies</p>
                     </div>
                 </div>
             </div>
 
             <!-- Final CTA -->
-            <div class="text-center">
-                <button onclick="resetAssessment()" class="group relative px-10 py-5 bg-gradient-to-r from-primary to-secondary rounded-xl text-white font-bold text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl mb-4">
-                    <span class="relative z-10">Explore More Careers</span>
-                    <i class="fas fa-search ml-3 group-hover:rotate-90 transition-transform duration-500"></i>
-                    <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-xl blur-lg opacity-0 group-hover:opacity-70 transition duration-500"></div>
+            <div class="final-cta">
+                <button id="restartBtn" class="cta-button">
+                    <span>Explore More Careers</span>
+                    <i class="fas fa-search"></i>
+                    <div class="button-glow"></div>
                 </button>
-                <p class="text-gray-400">Your journey to the perfect career starts here</p>
+                <p class="cta-subtitle">Your journey to the perfect career starts here</p>
             </div>
         </div>
 
-        <!-- Floating Animation -->
-        <div class="fixed bottom-8 right-8 z-40">
-            <div class="relative">
-                <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-lg animate-pulse"></div>
-                <button onclick="scrollToTop()" class="relative w-12 h-12 bg-dark-800 border border-dark-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-chevron-up"></i>
-                </button>
-            </div>
+        <!-- Floating Action Button -->
+        <div class="fab-container">
+            <div class="fab-glow"></div>
+            <button id="scrollTopBtn" class="fab-button">
+                <i class="fas fa-chevron-up"></i>
+            </button>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="relative z-10 bg-dark-900/80 backdrop-blur-md border-t border-dark-800 mt-20">
-        <div class="max-w-7xl mx-auto px-4 py-8">
-            <div class="text-center">
-                <div class="flex justify-center space-x-6 mb-4">
-                    <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
-                        <i class="fab fa-twitter text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
-                        <i class="fab fa-linkedin text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
-                        <i class="fab fa-github text-xl"></i>
-                    </a>
-                </div>
-                <p class="text-gray-500">© 2024 CareerPulse. No login required. Free career discovery tool.</p>
-                <p class="text-gray-600 text-sm mt-2">Find your passion, shape your future</p>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
             </div>
+            <p class="footer-text">© 2024 CareerPulse. No login required. Free career discovery tool.</p>
+            <p class="footer-subtext">Find your passion, shape your future</p>
         </div>
     </footer>
 
-    <script>
-        // Enhanced Configuration
-        let currentStep = 1;
-        const totalSteps = 3;
-        const userData = {};
-        let animationTimeout;
-
-        // Skills Data with Icons
-        const skillsData = [
-            { id: 'problem-solving', name: 'Problem Solving', icon: 'fa-lightbulb', color: 'text-yellow-400' },
-            { id: 'creative', name: 'Creative Thinking', icon: 'fa-palette', color: 'text-purple-400' },
-            { id: 'technical', name: 'Technical Skills', icon: 'fa-code', color: 'text-red-400' },
-            { id: 'analytical', name: 'Analytical Mind', icon: 'fa-chart-line', color: 'text-green-400' },
-            { id: 'leadership', name: 'Leadership', icon: 'fa-users', color: 'text-blue-400' },
-            { id: 'communication', name: 'Communication', icon: 'fa-comments', color: 'text-pink-400' },
-            { id: 'research', name: 'Research', icon: 'fa-search', color: 'text-teal-400' },
-            { id: 'organizational', name: 'Organization', icon: 'fa-tasks', color: 'text-indigo-400' },
-        ];
-
-        // Career Database
-        const careerDatabase = {
-            technical: [
-                {
-                    title: "Software Developer",
-                    description: "Design, develop, and maintain software applications using cutting-edge technologies.",
-                    match: 96,
-                    growth: "Very High Demand",
-                    skills: ["Programming", "Problem Solving", "Collaboration", "Continuous Learning"],
-                    icon: "fa-code",
-                    color: "from-blue-500 to-cyan-500"
-                },
-                {
-                    title: "Data Scientist",
-                    description: "Extract insights from complex data sets using statistical analysis and machine learning.",
-                    match: 92,
-                    growth: "Explosive Growth",
-                    skills: ["Statistics", "ML Algorithms", "Python", "Data Visualization"],
-                    icon: "fa-chart-bar",
-                    color: "from-purple-500 to-pink-500"
-                },
-                {
-                    title: "Cybersecurity Analyst",
-                    description: "Protect organizations from digital threats and ensure data security.",
-                    match: 88,
-                    growth: "Critical Demand",
-                    skills: ["Network Security", "Risk Assessment", "Ethical Hacking", "Compliance"],
-                    icon: "fa-shield-alt",
-                    color: "from-green-500 to-emerald-500"
-                }
-            ],
-            creative: [
-                {
-                    title: "UX/UI Designer",
-                    description: "Create intuitive and beautiful digital experiences that users love.",
-                    match: 95,
-                    growth: "High Demand",
-                    skills: ["User Research", "Wireframing", "Prototyping", "Design Systems"],
-                    icon: "fa-paint-brush",
-                    color: "from-pink-500 to-rose-500"
-                },
-                {
-                    title: "Digital Marketer",
-                    description: "Drive brand growth through strategic digital campaigns and content creation.",
-                    match: 90,
-                    growth: "Growing Field",
-                    skills: ["SEO", "Content Strategy", "Analytics", "Social Media"],
-                    icon: "fa-bullhorn",
-                    color: "from-orange-500 to-yellow-500"
-                },
-                {
-                    title: "Game Developer",
-                    description: "Bring interactive stories and experiences to life through game development.",
-                    match: 85,
-                    growth: "Innovative Sector",
-                    skills: ["Game Design", "3D Modeling", "C++/C#", "Physics Engines"],
-                    icon: "fa-gamepad",
-                    color: "from-red-500 to-orange-500"
-                }
-            ],
-            analytical: [
-                {
-                    title: "Financial Analyst",
-                    description: "Guide business decisions through detailed financial analysis and forecasting.",
-                    match: 93,
-                    growth: "Stable Demand",
-                    skills: ["Financial Modeling", "Excel", "Market Analysis", "Risk Assessment"],
-                    icon: "fa-chart-pie",
-                    color: "from-emerald-500 to-teal-500"
-                },
-                {
-                    title: "Business Consultant",
-                    description: "Help organizations optimize processes and achieve strategic goals.",
-                    match: 89,
-                    growth: "High Value",
-                    skills: ["Strategic Planning", "Process Improvement", "Client Relations", "Analysis"],
-                    icon: "fa-briefcase",
-                    color: "from-blue-600 to-indigo-600"
-                },
-                {
-                    title: "Research Scientist",
-                    description: "Conduct experiments and research to advance knowledge in your field.",
-                    match: 87,
-                    growth: "Innovation Driven",
-                    skills: ["Experimental Design", "Data Analysis", "Scientific Writing", "Critical Thinking"],
-                    icon: "fa-flask",
-                    color: "from-cyan-500 to-blue-500"
-                }
-            ],
-            leadership: [
-                {
-                    title: "Project Manager",
-                    description: "Lead teams to successfully deliver projects on time and within budget.",
-                    match: 94,
-                    growth: "Always in Demand",
-                    skills: ["Team Leadership", "Agile/Scrum", "Budgeting", "Stakeholder Management"],
-                    icon: "fa-tasks",
-                    color: "from-indigo-500 to-purple-500"
-                },
-                {
-                    title: "Product Manager",
-                    description: "Guide product development from conception to launch and iteration.",
-                    match: 91,
-                    growth: "Strategic Role",
-                    skills: ["Product Strategy", "User Stories", "Market Research", "Roadmapping"],
-                    icon: "fa-box-open",
-                    color: "from-violet-500 to-purple-500"
-                }
-            ],
-            communication: [
-                {
-                    title: "Content Strategist",
-                    description: "Craft compelling content strategies that engage audiences and drive results.",
-                    match: 92,
-                    growth: "Digital Focus",
-                    skills: ["Content Planning", "SEO Writing", "Audience Analysis", "Brand Voice"],
-                    icon: "fa-pen-nib",
-                    color: "from-rose-500 to-pink-500"
-                },
-                {
-                    title: "Public Relations Specialist",
-                    description: "Shape public perception and manage organizational reputation.",
-                    match: 86,
-                    growth: "Relationship Driven",
-                    skills: ["Media Relations", "Crisis Management", "Writing", "Networking"],
-                    icon: "fa-newspaper",
-                    color: "from-amber-500 to-yellow-500"
-                }
-            ]
-        };
-
-        // Initialize skills on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeSkills();
-            updateProgress();
-            
-            // Add floating particles
-            createParticles();
-            
-            // Add scroll animations
-            initializeScrollAnimations();
-        });
-
-        function initializeSkills() {
-            const container = document.querySelector('#step2 .grid');
-            const template = document.getElementById('skillTemplate');
-            
-            skillsData.forEach(skill => {
-                const clone = template.content.cloneNode(true);
-                const label = clone.querySelector('.skill-option');
-                const input = clone.querySelector('input');
-                const iconDiv = clone.querySelector('.skill-icon');
-                const text = clone.querySelector('p');
-                
-                input.value = skill.id;
-                iconDiv.innerHTML = `<i class="fas ${skill.icon} ${skill.color} text-3xl"></i>`;
-                text.textContent = skill.name;
-                
-                // Add click animation
-                input.addEventListener('change', function() {
-                    const parent = this.closest('.skill-option');
-                    if (this.checked) {
-                        parent.classList.add('glow-effect');
-                        animateCheck(parent);
-                    } else {
-                        parent.classList.remove('glow-effect');
-                    }
-                });
-                
-                container.appendChild(clone);
-            });
-        }
-
-        function createParticles() {
-            const container = document.querySelector('.fixed.inset-0');
-            for (let i = 0; i < 15; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle absolute';
-                particle.style.width = Math.random() * 100 + 50 + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 5 + 's';
-                particle.style.animationDuration = Math.random() * 10 + 10 + 's';
-                container.appendChild(particle);
-            }
-        }
-
-        function initializeScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-slide-up');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.step, .result-card').forEach(el => {
-                observer.observe(el);
-            });
-        }
-
-        function updateProgress() {
-            const percent = ((currentStep - 1) / totalSteps) * 100;
-            const progressRing = document.getElementById('progressRing');
-            const circumference = 2 * Math.PI * 45;
-            const offset = circumference - (percent / 100) * circumference;
-            
-            // Animate progress ring
-            if (progressRing) {
-                progressRing.style.strokeDashoffset = offset;
-            }
-            
-            // Update text
-            document.getElementById('progressText').textContent = Math.round(percent) + '%';
-            
-            // Update step title
-            const titles = ['Tell us about yourself', 'Your Superpowers', 'Your Preferences'];
-            document.getElementById('stepTitle').textContent = titles[currentStep - 1] || 'Complete!';
-        }
-
-        function animateCheck(element) {
-            element.classList.add('animate-pulse-glow');
-            setTimeout(() => {
-                element.classList.remove('animate-pulse-glow');
-            }, 1000);
-        }
-
-        function nextStep() {
-            if (!validateCurrentStep()) return;
-            
-            saveStepData();
-            
-            // Animate current step out
-            const currentStepEl = document.getElementById(`step${currentStep}`);
-            currentStepEl.style.animation = 'slide-up 0.5s ease-out reverse';
-            
-            setTimeout(() => {
-                currentStepEl.classList.add('hidden');
-                currentStepEl.style.animation = '';
-                
-                currentStep++;
-                const nextStepEl = document.getElementById(`step${currentStep}`);
-                nextStepEl.classList.remove('hidden');
-                nextStepEl.style.animation = 'slide-down 0.5s ease-out';
-                
-                setTimeout(() => {
-                    nextStepEl.style.animation = '';
-                }, 500);
-                
-                updateProgress();
-            }, 300);
-        }
-
-        function prevStep() {
-            const currentStepEl = document.getElementById(`step${currentStep}`);
-            currentStepEl.style.animation = 'slide-down 0.5s ease-out reverse';
-            
-            setTimeout(() => {
-                currentStepEl.classList.add('hidden');
-                currentStepEl.style.animation = '';
-                
-                currentStep--;
-                const prevStepEl = document.getElementById(`step${currentStep}`);
-                prevStepEl.classList.remove('hidden');
-                prevStepEl.style.animation = 'slide-up 0.5s ease-out';
-                
-                setTimeout(() => {
-                    prevStepEl.style.animation = '';
-                }, 500);
-                
-                updateProgress();
-            }, 300);
-        }
-
-        function validateCurrentStep() {
-            if (currentStep === 1) {
-                const education = document.getElementById('education').value;
-                const experience = document.getElementById('experience').value;
-                
-                if (!education || !experience) {
-                    showValidationError('Please fill in all fields to continue');
-                    return false;
-                }
-            }
-            
-            if (currentStep === 2) {
-                const selectedSkills = document.querySelectorAll('#step2 input:checked');
-                if (selectedSkills.length === 0) {
-                    showValidationError('Please select at least one skill that describes you');
-                    return false;
-                }
-            }
-            
-            if (currentStep === 3) {
-                const environment = document.querySelector('input[name="environment"]:checked');
-                const workStyle = document.getElementById('workStyle').value;
-                
-                if (!environment || !workStyle) {
-                    showValidationError('Please make all preference selections');
-                    return false;
-                }
-            }
-            
-            return true;
-        }
-
-        function showValidationError(message) {
-            // Create error notification
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'fixed top-4 right-4 z-50 px-6 py-3 bg-red-500/90 backdrop-blur-sm rounded-xl border border-red-400 animate-slide-down';
-            errorDiv.innerHTML = `
-                <div class="flex items-center">
-                    <i class="fas fa-exclamation-circle mr-3 text-xl"></i>
-                    <span>${message}</span>
-                </div>
-            `;
-            document.body.appendChild(errorDiv);
-            
-            // Remove after 3 seconds
-            setTimeout(() => {
-                errorDiv.style.animation = 'slide-down 0.5s ease-out reverse';
-                setTimeout(() => errorDiv.remove(), 300);
-            }, 3000);
-        }
-
-        function saveStepData() {
-            if (currentStep === 1) {
-                userData.education = document.getElementById('education').value;
-                userData.experience = document.getElementById('experience').value;
-            }
-            
-            if (currentStep === 2) {
-                userData.skills = Array.from(document.querySelectorAll('#step2 input:checked'))
-                    .map(input => input.value);
-            }
-            
-            if (currentStep === 3) {
-                userData.environment = document.querySelector('input[name="environment"]:checked').value;
-                userData.workStyle = document.getElementById('workStyle').value;
-            }
-        }
-
-        function showResults() {
-            if (!validateCurrentStep()) return;
-            saveStepData();
-            
-            // Hide current step with animation
-            const currentStepEl = document.getElementById(`step${currentStep}`);
-            currentStepEl.style.animation = 'slide-up 0.5s ease-out reverse';
-            
-            setTimeout(() => {
-                currentStepEl.classList.add('hidden');
-                currentStepEl.style.animation = '';
-                
-                // Determine career category
-                let careerCategory = determineCareerCategory();
-                
-                // Get careers
-                const careers = careerDatabase[careerCategory] || careerDatabase.technical;
-                
-                // Calculate overall match score
-                const overallScore = calculateOverallScore(careers);
-                document.getElementById('overallScore').textContent = overallScore + '%';
-                
-                // Display careers
-                displayCareers(careers);
-                
-                // Show results with animation
-                const resultsEl = document.getElementById('results');
-                resultsEl.classList.remove('hidden');
-                resultsEl.style.animation = 'fade-in 0.8s ease-out';
-                
-                // Update progress to 100%
-                updateProgress();
-                document.getElementById('progressText').textContent = '100%';
-                
-                setTimeout(() => {
-                    resultsEl.style.animation = '';
-                }, 800);
-                
-            }, 300);
-        }
-
-        function determineCareerCategory() {
-            if (!userData.skills) return 'technical';
-            
-            const skillWeights = {
-                'technical': 3,
-                'creative': 2,
-                'analytical': 2,
-                'leadership': 1,
-                'communication': 1
-            };
-            
-            let maxScore = 0;
-            let selectedCategory = 'technical';
-            
-            userData.skills.forEach(skill => {
-                if (skillWeights[skill] > maxScore) {
-                    maxScore = skillWeights[skill];
-                    selectedCategory = skill;
-                }
-            });
-            
-            return selectedCategory;
-        }
-
-        function calculateOverallScore(careers) {
-            let total = 0;
-            careers.forEach(career => {
-                total += career.match;
-            });
-            return Math.round(total / careers.length);
-        }
-
-        function displayCareers(careers) {
-            const container = document.getElementById('careerResults');
-            container.innerHTML = '';
-            
-            careers.forEach((career, index) => {
-                const card = document.createElement('div');
-                card.className = 'result-card rounded-2xl p-6 animate-slide-up';
-                card.style.animationDelay = (index * 0.1) + 's';
-                
-                card.innerHTML = `
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="flex items-center">
-                            <div class="w-14 h-14 bg-gradient-to-br ${career.color} rounded-xl flex items-center justify-center mr-4">
-                                <i class="fas ${career.icon} text-white text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold">${career.title}</h3>
-                                <div class="flex items-center mt-1">
-                                    <div class="w-24 h-2 bg-dark-700 rounded-full overflow-hidden">
-                                        <div class="h-full bg-gradient-to-r ${career.color} rounded-full" style="width: ${career.match}%"></div>
-                                    </div>
-                                    <span class="ml-3 text-lg font-bold gradient-text">${career.match}% Match</span>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="px-3 py-1 bg-dark-700 text-secondary font-semibold rounded-full text-sm">
-                            ${career.growth}
-                        </span>
-                    </div>
-                    
-                    <p class="text-gray-300 mb-6">${career.description}</p>
-                    
-                    <div class="mb-6">
-                        <h4 class="font-semibold text-gray-400 mb-2">Key Skills Required:</h4>
-                        <div class="flex flex-wrap gap-2">
-                            ${career.skills.map(skill => 
-                                `<span class="px-3 py-1.5 bg-dark-700/50 border border-dark-600 rounded-lg text-sm">${skill}</span>`
-                            ).join('')}
-                        </div>
-                    </div>
-                    
-                    <div class="flex space-x-4">
-                        <button class="flex-1 px-4 py-2.5 bg-dark-800 hover:bg-dark-700 border border-dark-600 rounded-lg transition-colors duration-300 group">
-                            <i class="fas fa-book-open mr-2 group-hover:text-primary"></i>
-                            Learn More
-                        </button>
-                        <button class="flex-1 px-4 py-2.5 bg-gradient-to-r ${career.color} rounded-lg text-white font-semibold transition-all duration-300 hover:scale-105">
-                            <i class="fas fa-rocket mr-2"></i>
-                            Explore Path
-                        </button>
-                    </div>
-                `;
-                
-                container.appendChild(card);
-            });
-        }
-
-        function resetAssessment() {
-            // Add reset animation
-            document.body.style.animation = 'fade-in 0.5s ease-out reverse';
-            
-            setTimeout(() => {
-                currentStep = 1;
-                
-                // Hide all steps and results
-                document.querySelectorAll('.step, #results').forEach(el => {
-                    el.classList.add('hidden');
-                    el.style.animation = '';
-                });
-                
-                // Show first step
-                const firstStep = document.getElementById('step1');
-                firstStep.classList.remove('hidden');
-                firstStep.style.animation = 'slide-down 0.5s ease-out';
-                
-                // Reset form
-                document.querySelectorAll('input, select').forEach(el => {
-                    if (el.type === 'checkbox' || el.type === 'radio') {
-                        el.checked = false;
-                    } else {
-                        el.value = '';
-                    }
-                });
-                
-                // Remove glow effects
-                document.querySelectorAll('.glow-effect').forEach(el => {
-                    el.classList.remove('glow-effect');
-                });
-                
-                // Clear user data
-                Object.keys(userData).forEach(key => delete userData[key]);
-                
-                // Reset progress
-                updateProgress();
-                
-                // Reset body animation
-                document.body.style.animation = '';
-                firstStep.style.animation = '';
-                
-                // Scroll to top
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                
-            }, 300);
-        }
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Add keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && currentStep < 4) {
-                if (currentStep === 3) {
-                    showResults();
-                } else {
-                    nextStep();
-                }
-            } else if (e.key === 'Escape') {
-                resetAssessment();
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
